@@ -34,7 +34,7 @@ public class CgpaAdapter extends RecyclerView.Adapter<CgpaViewHolder> {
         cgpaViewHolder.eraseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onItemClick.onItemClick(i);
+                onItemClick.onItemDeleteCgpa(i);
             }
         });
     }
