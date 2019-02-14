@@ -1,10 +1,25 @@
 package com.sust.cgpacalc;
 
 public class Cgpa {
-    public Cgpa(long itemId, float credit, float grade) {
+
+    private long itemId;
+    private float credit;
+    private float grade;
+    private String course;
+
+    public String getCourse() {
+        return course;
+    }
+
+    public void setCourse(String course) {
+        this.course = course;
+    }
+
+    public Cgpa(long itemId, float credit, float grade, String course) {
         this.itemId = itemId;
         this.credit = credit;
         this.grade = grade;
+        this.course = course;
     }
 
     public long getItemId() {
@@ -13,15 +28,6 @@ public class Cgpa {
 
     public void setItemId(long itemId) {
         this.itemId = itemId;
-    }
-
-    private long itemId;
-    private float credit;
-    private float grade;
-
-    public Cgpa(float credit, float grade) {
-        this.credit = credit;
-        this.grade = grade;
     }
 
     public float getCredit() {

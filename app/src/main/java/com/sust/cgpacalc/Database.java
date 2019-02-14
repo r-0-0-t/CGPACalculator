@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface Database {
     List<Cgpa> read();
-    void insert(float credit,float grade);
-    void delete();
+    void insert(float credit,float grade,String course);
+    void delete(long _ID);
     void update();
 }

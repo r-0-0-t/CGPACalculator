@@ -15,7 +15,8 @@ public class DBHelper extends SQLiteOpenHelper {
             "CREATE TABLE " + CGPARecords.CGPAEntries.TABLE_NAME + " (" +
                     CGPARecords.CGPAEntries._ID + " INTEGER PRIMARY KEY," +
                     CGPARecords.CGPAEntries.COLUMN_GRADE + " REAL," +
-                    CGPARecords.CGPAEntries.COLUMN_CREDIT + " REAL)";
+                    CGPARecords.CGPAEntries.COLUMN_CREDIT + " REAL," +
+                    CGPARecords.CGPAEntries.COLUMN_COURSE + " TEXT )";
 
     private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + CGPARecords.CGPAEntries.TABLE_NAME;

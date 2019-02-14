@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class CGPADatabase implements Database {
 
     private SQLiteDatabase database;
@@ -26,7 +27,8 @@ public class CGPADatabase implements Database {
         String[] projection = {
                 CGPARecords.CGPAEntries._ID,
                 CGPARecords.CGPAEntries.COLUMN_CREDIT,
-                CGPARecords.CGPAEntries.COLUMN_GRADE
+                CGPARecords.CGPAEntries.COLUMN_GRADE,
+                CGPARecords.CGPAEntries.COLUMN_COURSE
         };
 
         String sortOrder =
@@ -47,8 +49,9 @@ public class CGPADatabase implements Database {
                     cursor.getColumnIndexOrThrow(CGPARecords.CGPAEntries._ID));
             float credit = cursor.getFloat(cursor.getColumnIndexOrThrow(CGPARecords.CGPAEntries.COLUMN_CREDIT));
             float grade = cursor.getFloat(cursor.getColumnIndexOrThrow(CGPARecords.CGPAEntries.COLUMN_GRADE));
+            String course = cursor.getString(cursor.getColumnIndexOrThrow(CGPARecords.CGPAEntries.COLUMN_COURSE));
 
-            itemIds.add(new Cgpa(itemId,credit,grade));
+            itemIds.add(new Cgpa(itemId,credit,grade,course));
         }
         cursor.close();
 
@@ -56,20 +59,26 @@ public class CGPADatabase implements Database {
     }
 
     @Override
-    public void insert(float credit,float grade) {
+    public void insert(float credit,float grade,String course) {
         database = dbHelper.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(CGPARecords.CGPAEntries.COLUMN_CREDIT, credit);
         values.put(CGPARecords.CGPAEntries.COLUMN_GRADE, grade);
+        values.put(CGPARecords.CGPAEntries.COLUMN_COURSE,course);
 
-// Insert the new row, returning the primary key value of the new row
         long newRowId = database.insert(CGPARecords.CGPAEntries.TABLE_NAME, null, values);
     }
 
     @Override
-    public void delete() {
-
+    public void delete(long _ID) {
+        database = dbHelper.getWritableDatabase();
+        // Define 'where' part of query.
+        String selection = CGPARecords.CGPAEntries._ID + " LIKE ?";
+// Specify arguments in placeholder order.
+        String[] selectionArgs = { ((Long)_ID).toString() };
+// Issue SQL statement.
+        int deletedRows = database.delete(CGPARecords.CGPAEntries.TABLE_NAME, selection, selectionArgs);
     }
 
     @Override
