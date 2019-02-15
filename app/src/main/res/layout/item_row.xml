@@ -53,6 +53,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content" />
 <EditText
+    android:inputType="numberDecimal"
     android:textAlignment="center"
     android:id="@+id/credit_edit_text"
     android:layout_weight="1"
@@ -60,6 +61,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content" />
 <EditText
+    android:inputType="numberDecimal"
     android:textAlignment="center"
     android:id="@+id/grade_edit_text"
     android:layout_weight="1"
