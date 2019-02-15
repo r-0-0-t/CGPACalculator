@@ -82,7 +82,24 @@ public class CGPADatabase implements Database {
     }
 
     @Override
-    public void update() {
+    public void update(float credit,float grade,String course,long _ID) {
+        database = dbHelper.getWritableDatabase();
 
+// New value for one column
+        ContentValues values = new ContentValues();
+        values.put(CGPARecords.CGPAEntries.COLUMN_CREDIT, credit);
+        values.put(CGPARecords.CGPAEntries.COLUMN_GRADE, grade);
+        values.put(CGPARecords.CGPAEntries.COLUMN_COURSE,course);
+
+// Which row to update, based on the title
+            String selection = "_id=" + _ID ;
+        String[] selectionArgs = { };
+
+        int count = database.update(
+                CGPARecords.CGPAEntries.TABLE_NAME,
+                values,
+                selection,
+                null
+                );
     }
 }

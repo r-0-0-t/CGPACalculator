@@ -91,6 +91,34 @@ public class MainActivity extends AppCompatActivity implements OnItemClick {
         calculateCgpa();
     }
 
+    @Override
+    public void onItemUpdateCgpa(float credit,float grade,String course,int position) {
+        database.update(credit,grade,course,cgpaList.get(position).getItemId());
+        cgpaList.clear();
+        cgpaList.addAll(database.read());
+        adapter.notifyDataSetChanged();
+        adapter.notifyDataSetChanged();
+        hideSoftKeyboard(this);
+
+
+        calculateCgpa();
+    }
+
+    @Override
+    public void onItemClickGrade(int position) {
+
+    }
+
+    @Override
+    public void onItemClickCredit(int position) {
+
+    }
+
+    @Override
+    public void onItemClickCourse(int position) {
+
+    }
+
 
     public void onItemAddCgpa(View view) {
         database.insert((Float.valueOf(credit.getText().toString()))
@@ -117,6 +145,6 @@ public class MainActivity extends AppCompatActivity implements OnItemClick {
             total_credits += cgpa.getCredit();
         }
         total/=total_credits;
-        calculated_value.setText("CGPA : " + total);
+        calculated_value.setText("Credits : " + total_credits + "\nCGPA : " + ((Double)(total)).toString() );
     }
 }
